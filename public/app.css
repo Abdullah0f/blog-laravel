@@ -1,0 +1,14 @@
+.container {
+    margin: 0 auto;
+    width: 60%;
+}
+h1 {
+    font-size: 50px;
+    text-align: center;
+}
+p {
+    font-size: 30px;
+}
+.blog-post {
+    border-bottom: 3px solid #ccc;
+}
