@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    $posts = Post::all();
-    return view('welcome', [
-        'posts' => $posts
-    ]);
+// if / then redirect to /posts
+Route::get("/", function () {
+    return redirect("/posts");
+});
+Route::get('/posts', function () {
+    return view('posts', ['posts' =>  Post::all()]);
+});
+Route::get('/posts/{post:slug}', function (Post $post) {
+    return view('post', ['post' => $post]);
 });

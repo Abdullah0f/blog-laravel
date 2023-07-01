@@ -9,14 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <?php 
-        foreach ($posts as $post) {
-            echo "<div class='blog-post'>";
-            echo $post;
-            echo "</div>";
-        }
-        ?>
-        
+        {{ $slot }}
     </div>
 </body>
 </html>
