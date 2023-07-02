@@ -8,5 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    // protected $fillable = ['title', 'excerpt', 'body'];
+    // every fiels is fillable except id
+    protected $guarded = ['id'];
+
+    protected $with = ['category', 'author'];
+
+    function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+    function author()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }
