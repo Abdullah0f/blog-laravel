@@ -61,6 +61,8 @@ class DatabaseSeeder extends Seeder
 
 
         // create 10 posts for each category and each post assigned to a random user
+        // for each post create 5 comments
+        // for each comment assigned to a random user
         for ($i = 0; $i < 5; $i++) {
             $family->posts()->create([
                 'user_id' => rand(1, 4),
@@ -88,5 +90,16 @@ class DatabaseSeeder extends Seeder
                 'body' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
             ]);
         };
+        $postIds = Post::all()->pluck('id');
+
+        foreach ($postIds as $postId) {
+            $post = Post::find($postId);
+            for ($j = 0; $j < 5; $j++) {
+                $post->comments()->create([
+                    'user_id' => rand(1, 4),
+                    'body' => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+                ]);
+            }
+        }
     }
 }
