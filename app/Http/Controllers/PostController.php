@@ -27,14 +27,14 @@ class PostController extends Controller
     {
         $attributes = request()->validate([
             'title' => 'required',
-            // 'thumbnail' => 'required|image',
+            'thumbnail' => 'required|image',
             'slug' => 'required|unique:posts,slug',
             'excerpt' => 'required',
             'body' => 'required',
             'category_id' => ['required', 'exists:categories,id']
         ]);
         $attributes['user_id'] = auth()->id();
-        // $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
         Post::create($attributes);
         return redirect('/');
     }
